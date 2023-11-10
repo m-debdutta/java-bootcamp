@@ -17,6 +17,11 @@ public class Rectangle implements TwoDimensionalShape {
     return new Rectangle(length, breadth);
   }
 
+  public static Rectangle create(double side) throws InvalidDimensionException {
+    if (side < 0) throw new InvalidDimensionException();
+    return Rectangle.create(side, side);
+  }
+
   @Override
   public double area() {
     return this.length * this.breadth;

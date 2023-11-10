@@ -35,4 +35,33 @@ class RectangleTest {
   void shouldNotCreateRectangleWithNegativeDimensions() {
     InvalidDimensionException exception = assertThrows(InvalidDimensionException.class, () -> Rectangle.create(-4, 2));
   }
+
+  @Test
+  void areaOfSquareShouldBeOneForUnitSide() throws InvalidDimensionException {
+    Rectangle square = Rectangle.create(1);
+    assertEquals(1, square.area());
+  }
+
+  @Test
+  void areaOfSquareShouldBeSquareOfSide() throws InvalidDimensionException {
+    Rectangle square = Rectangle.create(3);
+    assertEquals(9, square.area());
+  }
+
+  @Test
+  void perimeterOfSquareShouldBeFourForUnitSide() throws InvalidDimensionException {
+    Rectangle square = Rectangle.create(1);
+    assertEquals(4, square.perimeter());
+  }
+
+  @Test
+  void perimeterOfSquareShouldBeFourTimesTheSide() throws InvalidDimensionException {
+    Rectangle square = Rectangle.create(2);
+    assertEquals(8, square.perimeter());
+  }
+
+  @Test
+  void shouldNotCreateSquareWithNegativeSide() {
+    InvalidDimensionException exception = assertThrows(InvalidDimensionException.class, () -> Rectangle.create(-4));
+  }
 }
