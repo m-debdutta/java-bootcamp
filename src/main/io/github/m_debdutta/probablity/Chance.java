@@ -14,6 +14,15 @@ public class Chance {
     return new Chance(probability);
   }
 
+  public static Chance cumulate(Chance... chances) throws OutOfRangeException {
+    double cumulativeProbability = 1;
+    for (Chance chance : chances) {
+      cumulativeProbability = cumulativeProbability * chance.probability;
+    }
+
+    return Chance.as(cumulativeProbability);
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -25,5 +34,9 @@ public class Chance {
   @Override
   public int hashCode() {
     return Objects.hash(this.probability);
+  }
+
+  public Chance not() throws OutOfRangeException {
+    return Chance.as(1 - this.probability);
   }
 }

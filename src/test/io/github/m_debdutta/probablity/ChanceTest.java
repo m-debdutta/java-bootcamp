@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ChanceTest {
   @Test
-  void shouldRepresentChanceOfGettingTailByFlippingACoin() throws OutOfRangeException {
+  void shouldRepresentChanceOfGettingTailsByFlippingACoin() throws OutOfRangeException {
     Chance chanceOfGettingTails = Chance.as(0.5);
     assertEquals(chanceOfGettingTails, Chance.as(0.5));
   }
@@ -20,5 +20,19 @@ class ChanceTest {
   @Test
   void shouldThrowOutOfRangeExceptionWhenProbabilityIsGreaterThanOne() {
     assertThrows(OutOfRangeException.class, () -> Chance.as(2));
+  }
+
+  @Test
+  void shouldRepresentChanceOfNotGettingTailsByFlippingACoin() throws OutOfRangeException {
+    Chance chanceOfGettingTail = Chance.as(0.5);
+    assertEquals(Chance.as(0.5), chanceOfGettingTail.not());
+  }
+
+  @Test
+  void shouldRepresentChanceOfGettingTwoTailsByFlippingTwoCoin() throws OutOfRangeException {
+    Chance chanceOfGettingTailCoin1 = Chance.as(0.5);
+    Chance chanceOfGettingTailCoin2 = Chance.as(0.5);
+    Chance cumulativeChance = Chance.cumulate(chanceOfGettingTailCoin1, chanceOfGettingTailCoin2);
+    assertEquals(Chance.as(0.25), cumulativeChance);
   }
 }
