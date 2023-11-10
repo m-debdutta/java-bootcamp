@@ -9,4 +9,9 @@ class CoinTest {
   void chanceOfGettingTailShouldBeHalf() {
     assertEquals(0.5, Coin.tailProbablity());
   }
+
+  @Test
+  void chanceOfGettingHeadShouldBeHalf() {
+    assertEquals(0.5, Coin.headProbablity());
+  }
 }
