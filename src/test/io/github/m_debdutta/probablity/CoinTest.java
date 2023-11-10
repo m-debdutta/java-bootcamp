@@ -7,11 +7,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class CoinTest {
   @Test
   void chanceOfGettingTailShouldBeHalf() {
-    assertEquals(0.5, Coin.tailProbablity());
+    assertEquals(0.5, Coin.tailProbability);
+  }
+
+  @Test
+  void chanceOfNotGettingTailShouldBeHalf() {
+    assertEquals(0.5, Coin.notTailProbability());
   }
 
   @Test
   void chanceOfGettingHeadShouldBeHalf() {
-    assertEquals(0.5, Coin.headProbablity());
+    assertEquals(0.5, Coin.headProbability);
   }
 }
