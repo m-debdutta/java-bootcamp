@@ -12,14 +12,14 @@ public class Rectangle implements TwoDimensionalShape {
     this.breadth = breadth;
   }
 
-  static Rectangle create(double length, double breadth) throws InvalidDimensionException {
+  static Rectangle createSquare(double length, double breadth) throws InvalidDimensionException {
     if (length < 0 || breadth < 0) throw new InvalidDimensionException();
     return new Rectangle(length, breadth);
   }
 
-  public static Rectangle create(double side) throws InvalidDimensionException {
+  public static Rectangle createSquare(double side) throws InvalidDimensionException {
     if (side < 0) throw new InvalidDimensionException();
-    return Rectangle.create(side, side);
+    return Rectangle.createSquare(side, side);
   }
 
   @Override
