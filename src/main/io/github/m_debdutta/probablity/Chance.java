@@ -34,4 +34,8 @@ public class Chance {
   public Chance not() throws OutOfRangeException {
     return Chance.as(1 - this.probability);
   }
+
+  public Chance or(Chance otherChance) throws OutOfRangeException {
+    return Chance.as(this.probability + otherChance.probability);
+  }
 }
