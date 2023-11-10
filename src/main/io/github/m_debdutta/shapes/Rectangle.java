@@ -2,7 +2,7 @@ package io.github.m_debdutta.shapes;
 
 import io.github.m_debdutta.shapes.exceptions.InvalidDimensionException;
 
-public class Rectangle implements TwoDimensionalShape {
+public class Rectangle {
 
   private final double length;
   private final double breadth;
@@ -19,15 +19,13 @@ public class Rectangle implements TwoDimensionalShape {
 
   public static Rectangle createSquare(double side) throws InvalidDimensionException {
     if (side < 0) throw new InvalidDimensionException();
-    return Rectangle.create(side, side);
+    return new Rectangle(side, side);
   }
 
-  @Override
   public double area() {
     return this.length * this.breadth;
   }
 
-  @Override
   public double perimeter() {
     return 2 * (this.length + this.breadth);
   }
