@@ -32,7 +32,13 @@ class ChanceTest {
   void shouldRepresentChanceOfGettingTwoTailsByFlippingTwoCoin() throws OutOfRangeException {
     Chance chanceOfGettingTailCoin1 = Chance.as(0.5);
     Chance chanceOfGettingTailCoin2 = Chance.as(0.5);
-    Chance cumulativeChance = Chance.cumulate(chanceOfGettingTailCoin1, chanceOfGettingTailCoin2);
+    Chance cumulativeChance = chanceOfGettingTailCoin1.and(chanceOfGettingTailCoin2);
     assertEquals(Chance.as(0.25), cumulativeChance);
+  }
+
+  @Test
+  void shouldRepresentChanceOfGettingAtLeastOneTailByFlippingTwoCoin() throws OutOfRangeException {
+    Chance chanceOfGettingNoTails = Chance.as(0.25);
+    assertEquals(Chance.as(0.75), chanceOfGettingNoTails.not());
   }
 }

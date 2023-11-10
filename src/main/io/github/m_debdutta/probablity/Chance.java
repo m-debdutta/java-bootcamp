@@ -14,13 +14,8 @@ public class Chance {
     return new Chance(probability);
   }
 
-  public static Chance cumulate(Chance... chances) throws OutOfRangeException {
-    double cumulativeProbability = 1;
-    for (Chance chance : chances) {
-      cumulativeProbability = cumulativeProbability * chance.probability;
-    }
-
-    return Chance.as(cumulativeProbability);
+  public Chance and(Chance otherChance) throws OutOfRangeException {
+    return Chance.as(otherChance.probability * this.probability);
   }
 
   @Override
