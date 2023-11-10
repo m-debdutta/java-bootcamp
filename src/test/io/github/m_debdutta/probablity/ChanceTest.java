@@ -39,9 +39,7 @@ class ChanceTest {
   @Test
   void shouldRepresentChanceOfGettingAtLeastOneTailByFlippingTwoCoin() throws OutOfRangeException {
     Chance tailOnFirstCoin = Chance.as(0.5);
-    Chance headOnFirstCoin = Chance.as(0.5);
-    Chance chanceRemainingForSecondCoin = headOnFirstCoin.not();
-    Chance tailOnSecondCoin = chanceRemainingForSecondCoin.and(tailOnFirstCoin);
+    Chance tailOnSecondCoin = Chance.as(0.25);
     Chance atLeastOneTail = tailOnFirstCoin.or(tailOnSecondCoin);
     assertEquals(Chance.as(0.75), atLeastOneTail);
   }
