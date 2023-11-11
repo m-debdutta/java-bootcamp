@@ -3,32 +3,39 @@ package io.github.m_debdutta.bootcamp.measurement;
 import io.github.m_debdutta.bootcamp.measurement.exceptions.InvalidLengthException;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class LengthTest {
   @Test
-  void shouldBeEqualWhenTwoLengthAreSame() throws InvalidLengthException {
-    Feet feet = Feet.initialize(1);
-    Inch inch = Inch.initialize(12);
-    Length l1 = new Length(feet);
-    Length l2 = new Length(inch);
-    assertEquals(l1, l2);
+  void oneFeetIsEqualToTwelveInches() throws InvalidLengthException {
+    Length oneFeet = Length.initialize(1, LengthUnit.FEET);
+    Length twelveInch = Length.initialize(12, LengthUnit.INCH);
+    assertEquals(oneFeet, twelveInch);
   }
 
   @Test
-  void shouldNotBeEqualWhenComparingTwoDifferentLengths() throws InvalidLengthException {
-    Feet feet = Feet.initialize(1);
-    Inch inch = Inch.initialize(11);
-    Length l1 = new Length(feet);
-    Length l2 = new Length(inch);
-    assertNotEquals(l1, l2);
+  void shouldNotBeEqualGivenDifferentLengths() throws InvalidLengthException {
+    Length oneFeet = Length.initialize(1, LengthUnit.FEET);
+    Length elevenInch = Length.initialize(11, LengthUnit.INCH);
+    assertNotEquals(oneFeet, elevenInch);
   }
 
   @Test
-  void fiveCentimeterShouldBeEqualToTwoInch() throws InvalidLengthException {
-    Centimeter fiveCentimeter = Centimeter.initialize(5);
-    Inch twoInch = Inch.initialize(2);
-    assertEquals(new Length(twoInch), new Length(fiveCentimeter));
+  void twoInchIsEqualToFiveCentimeter() throws InvalidLengthException {
+    Length twoInch = Length.initialize(2, LengthUnit.INCH);
+    Length fiveCentimeter = Length.initialize(5, LengthUnit.CENTIMETER);
+    assertEquals(twoInch, fiveCentimeter);
+  }
+
+  @Test
+  void oneCentimeterIsEqualToTenMillimeter() throws InvalidLengthException {
+    Length oneCentimeter = Length.initialize(1, LengthUnit.CENTIMETER);
+    Length tenMillimeter = Length.initialize(10, LengthUnit.MILLIMETER);
+    assertEquals(oneCentimeter, tenMillimeter);
+  }
+
+  @Test
+  void shouldNotAllowNegativeMeasure() {
+    assertThrows(InvalidLengthException.class, () -> Length.initialize(-1, LengthUnit.INCH));
   }
 }
