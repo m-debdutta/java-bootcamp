@@ -4,30 +4,34 @@ import io.github.m_debdutta.bootcamp.measurement.exceptions.InvalidLengthExcepti
 
 import java.util.Objects;
 
-public class Length {
+public class Measurement {
   private final double measure;
-  private final LengthUnit unit;
+  private final Unit unit;
 
-  private Length(double measure, LengthUnit unit) {
+  private Measurement(double measure, Unit unit) {
     this.measure = measure;
     this.unit = unit;
   }
 
-  public static Length initialize(int measure, LengthUnit unit) throws InvalidLengthException {
+  public static Measurement initialize(double measure, Unit unit) throws InvalidLengthException {
     if (measure < 0) throw new InvalidLengthException();
-    return new Length(measure, unit);
+    return new Measurement(measure, unit);
   }
 
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || this.getClass() != o.getClass()) return false;
-    Length length1 = (Length) o;
+    Measurement length1 = (Measurement) o;
     return this.isEqual(length1);
   }
 
-  private boolean isEqual(Length length1) {
-    return length1.toStandard() == this.toStandard();
+  private boolean isEqual(Measurement m) {
+    return this.isSameUnitType(m) && m.toStandard() == this.toStandard();
+  }
+
+  private boolean isSameUnitType(Measurement m) {
+    return this.unit.isSameUnit(m.unit);
   }
 
   private double toStandard() {
