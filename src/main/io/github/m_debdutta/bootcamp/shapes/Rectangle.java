@@ -1,6 +1,6 @@
-package io.github.m_debdutta.shapes;
+package io.github.m_debdutta.bootcamp.shapes;
 
-import io.github.m_debdutta.shapes.exceptions.InvalidDimensionException;
+import io.github.m_debdutta.bootcamp.shapes.exceptions.InvalidDimensionException;
 
 public class Rectangle {
 

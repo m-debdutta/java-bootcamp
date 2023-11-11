@@ -1,4 +1,6 @@
-package io.github.m_debdutta.probablity;
+package io.github.m_debdutta.bootcamp.probablity;
+
+import io.github.m_debdutta.bootcamp.probablity.exceptions.OutOfRangeException;
 
 import java.util.Objects;
 

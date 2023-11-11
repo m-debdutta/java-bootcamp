@@ -1,4 +1,4 @@
-package io.github.m_debdutta.shapes.exceptions;
+package io.github.m_debdutta.bootcamp.shapes.exceptions;
 
 public class InvalidDimensionException extends Throwable {
 }
