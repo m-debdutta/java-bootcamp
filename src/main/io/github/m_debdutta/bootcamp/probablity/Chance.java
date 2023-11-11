@@ -16,8 +16,16 @@ public class Chance {
     return new Chance(probability);
   }
 
+  public Chance not() throws OutOfRangeException {
+    return Chance.of(1 - this.probability);
+  }
+
   public Chance and(Chance otherChance) throws OutOfRangeException {
     return Chance.of(otherChance.probability * this.probability);
+  }
+
+  public Chance or(Chance otherChance) throws OutOfRangeException {
+    return this.not().and(otherChance.not()).not();
   }
 
   @Override
@@ -31,13 +39,5 @@ public class Chance {
   @Override
   public int hashCode() {
     return Objects.hash(this.probability);
-  }
-
-  public Chance not() throws OutOfRangeException {
-    return Chance.of(1 - this.probability);
-  }
-
-  public Chance or(Chance otherChance) throws OutOfRangeException {
-    return Chance.of(this.probability + otherChance.probability - this.and(otherChance).probability);
   }
 }
