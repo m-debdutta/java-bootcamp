@@ -9,13 +9,13 @@ public class Chance {
     this.probability = probability;
   }
 
-  public static Chance as(double probability) throws OutOfRangeException {
+  public static Chance of(double probability) throws OutOfRangeException {
     if (probability < 0 || probability > 1) throw new OutOfRangeException();
     return new Chance(probability);
   }
 
   public Chance and(Chance otherChance) throws OutOfRangeException {
-    return Chance.as(otherChance.probability * this.probability);
+    return Chance.of(otherChance.probability * this.probability);
   }
 
   @Override
@@ -32,10 +32,10 @@ public class Chance {
   }
 
   public Chance not() throws OutOfRangeException {
-    return Chance.as(1 - this.probability);
+    return Chance.of(1 - this.probability);
   }
 
   public Chance or(Chance otherChance) throws OutOfRangeException {
-    return Chance.as(this.probability + otherChance.probability);
+    return Chance.of(this.probability + otherChance.probability - this.and(otherChance).probability);
   }
 }
