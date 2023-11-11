@@ -45,4 +45,25 @@ class MeasurementTest {
     Measurement threePointSevenEightLiters = Measurement.initialize(3.78, Unit.LITER);
     assertEquals(oneGallon, threePointSevenEightLiters);
   }
+
+  @Test
+  void shouldBeFalseForIncompatibleUnits() throws InvalidLengthException {
+    Measurement oneGallon = Measurement.initialize(1, Unit.GALLON);
+    Measurement oneMillimeter = Measurement.initialize(1, Unit.MILLIMETER);
+    assertNotEquals(oneGallon, oneMillimeter);
+  }
+
+  @Test
+  void shouldAddTwoSimilarMeasurements() throws InvalidLengthException, IncompatableUnitException {
+    Measurement twoInch = Measurement.initialize(2, Unit.INCH);
+    Measurement fourInch = Measurement.initialize(4, Unit.INCH);
+    assertEquals(fourInch, twoInch.add(twoInch));
+  }
+
+  @Test
+  void shouldNotAddTwoIncompatibleUnitTypes() throws InvalidLengthException {
+    Measurement oneGallon = Measurement.initialize(1, Unit.GALLON);
+    Measurement oneMillimeter = Measurement.initialize(1, Unit.MILLIMETER);
+    assertThrows(IncompatableUnitException.class, () -> oneMillimeter.add(oneGallon));
+  }
 }

@@ -42,4 +42,9 @@ public class Measurement {
   public int hashCode() {
     return Objects.hash(this.measure);
   }
+
+  public Measurement add(Measurement m) throws IncompatableUnitException, InvalidLengthException {
+    if (!this.isSameUnitType(m)) throw new IncompatableUnitException();
+    return Measurement.initialize(this.measure + m.measure, this.unit);
+  }
 }
