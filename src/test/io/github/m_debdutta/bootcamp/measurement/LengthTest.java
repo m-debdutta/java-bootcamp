@@ -24,4 +24,11 @@ class LengthTest {
     Length l2 = new Length(inch);
     assertNotEquals(l1, l2);
   }
+
+  @Test
+  void fiveCentimeterShouldBeEqualToTwoInch() throws InvalidLengthException {
+    Centimeter fiveCentimeter = Centimeter.initialize(5);
+    Inch twoInch = Inch.initialize(2);
+    assertEquals(new Length(twoInch), new Length(fiveCentimeter));
+  }
 }

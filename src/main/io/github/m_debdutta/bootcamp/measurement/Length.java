@@ -3,14 +3,18 @@ package io.github.m_debdutta.bootcamp.measurement;
 import java.util.Objects;
 
 public class Length {
-  private final int length;
+  private final double length;
 
   public Length(Feet feet) {
-    this.length = feet.value * 12;
+    this.length = feet.value * 12 * 2.5;
   }
 
   public Length(Inch inch) {
-    this.length = inch.value;
+    this.length = inch.value * 2.5;
+  }
+
+  public Length(Centimeter centimeter) {
+    this.length = centimeter.value;
   }
 
   @Override
