@@ -26,8 +26,15 @@ public class Measurement {
     return this.isEqual(length1);
   }
 
+  @Override
+  public String toString() {
+    return String.format("Measurement{measure=%s, unit=%s}", this.measure, this.unit);
+  }
+
   private boolean isEqual(Measurement m) {
-    return this.isSameUnitType(m) && m.toStandard() == this.toStandard();
+    double difference = Math.abs(m.toStandard() - this.toStandard());
+    boolean isSameMeasure = difference < 0.01;
+    return this.isSameUnitType(m) && isSameMeasure;
   }
 
   private boolean isSameUnitType(Measurement m) {
@@ -43,8 +50,17 @@ public class Measurement {
     return Objects.hash(this.measure);
   }
 
-  public Measurement add(Measurement m) throws IncompatableUnitException, InvalidLengthException {
+  public Measurement addLength(Measurement m) throws IncompatableUnitException, InvalidLengthException {
     if (!this.isSameUnitType(m)) throw new IncompatableUnitException();
-    return Measurement.initialize(this.measure + m.measure, this.unit);
+    return this.addMeasurement(m, Unit.INCH);
+  }
+
+  private Measurement addMeasurement(Measurement m, Unit standardUnit) throws InvalidLengthException {
+    return Measurement.initialize(this.toStandard() + m.toStandard(), standardUnit);
+  }
+
+  public Measurement addVolume(Measurement m) throws IncompatableUnitException, InvalidLengthException {
+    if (!this.isSameUnitType(m)) throw new IncompatableUnitException();
+    return this.addMeasurement(m, Unit.LITER);
   }
 }

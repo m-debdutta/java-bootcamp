@@ -1,10 +1,10 @@
 package io.github.m_debdutta.bootcamp.measurement;
 
 public enum Unit {
-  FEET(12 * 2.5, UnitType.LENGTH),
-  INCH(2.5, UnitType.LENGTH),
-  CENTIMETER(1, UnitType.LENGTH),
-  MILLIMETER(0.1, UnitType.LENGTH),
+  FEET(12, UnitType.LENGTH),
+  INCH(1, UnitType.LENGTH),
+  CENTIMETER(1 / 2.5, UnitType.LENGTH),
+  MILLIMETER(1 / (10 * 2.5), UnitType.LENGTH),
   GALLON(3.78, UnitType.VOLUME),
   LITER(1, UnitType.VOLUME);
 

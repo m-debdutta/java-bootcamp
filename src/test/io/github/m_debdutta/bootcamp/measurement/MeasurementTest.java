@@ -57,13 +57,29 @@ class MeasurementTest {
   void shouldAddTwoSimilarMeasurements() throws InvalidLengthException, IncompatableUnitException {
     Measurement twoInch = Measurement.initialize(2, Unit.INCH);
     Measurement fourInch = Measurement.initialize(4, Unit.INCH);
-    assertEquals(fourInch, twoInch.add(twoInch));
+    assertEquals(fourInch, twoInch.addLength(twoInch));
+  }
+
+  @Test
+  void shouldCalculateInInches() throws InvalidLengthException, IncompatableUnitException {
+    Measurement twoInch = Measurement.initialize(2, Unit.INCH);
+    Measurement fiveCentimeter = Measurement.initialize(5, Unit.CENTIMETER);
+    Measurement fourInch = Measurement.initialize(4, Unit.INCH);
+    assertEquals(fourInch, twoInch.addLength(fiveCentimeter));
+  }
+
+  @Test
+  void shouldCalculateInLiters() throws InvalidLengthException, IncompatableUnitException {
+    Measurement oneGallon = Measurement.initialize(1, Unit.GALLON);
+    Measurement oneLiter = Measurement.initialize(1, Unit.LITER);
+    Measurement fourPointSevenEightLiter = Measurement.initialize(4.78, Unit.LITER);
+    assertEquals(fourPointSevenEightLiter, oneLiter.addVolume(oneGallon));
   }
 
   @Test
   void shouldNotAddTwoIncompatibleUnitTypes() throws InvalidLengthException {
     Measurement oneGallon = Measurement.initialize(1, Unit.GALLON);
     Measurement oneMillimeter = Measurement.initialize(1, Unit.MILLIMETER);
-    assertThrows(IncompatableUnitException.class, () -> oneMillimeter.add(oneGallon));
+    assertThrows(IncompatableUnitException.class, () -> oneMillimeter.addLength(oneGallon));
   }
 }
