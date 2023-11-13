@@ -1,27 +1,27 @@
 package io.github.m_debdutta.bootcamp.measurement;
 
-import java.util.function.Function;
-
 public enum Unit {
-  FEET((x -> x * 12), UnitType.LENGTH),
-  INCH((x -> x), UnitType.LENGTH),
-  CENTIMETER(x -> x / 2.5, UnitType.LENGTH),
-  MILLIMETER((x -> x / 25), UnitType.LENGTH),
-  GALLON((x -> x * 3.78), UnitType.VOLUME),
-  LITER((x -> x), UnitType.VOLUME),
-  CELSIUS((x -> (x * 1.8) + 32), UnitType.TEMPERATURE),
-  FAHRENHEIT((x -> x), UnitType.TEMPERATURE);
+  FEET(12, 0, UnitType.LENGTH),
+  INCH(1, 0, UnitType.LENGTH),
+  CENTIMETER(1 / 2.5, 0, UnitType.LENGTH),
+  MILLIMETER(0.04, 0, UnitType.LENGTH),
+  GALLON(3.78, 0, UnitType.VOLUME),
+  LITER(1, 0, UnitType.VOLUME),
+  CELSIUS(1.8, 32, UnitType.TEMPERATURE),
+  FAHRENHEIT(1, 0, UnitType.TEMPERATURE);
 
+  private final double standardizationFactor;
+  private final double standardizationDelta;
   private final UnitType unitType;
-  private final Function<Double, Double> standardizationFn;
 
-  Unit(Function<Double, Double> standardizationFn, UnitType unitType) {
-    this.standardizationFn = standardizationFn;
+  Unit(double standardizationFactor, double standardizationDelta, UnitType unitType) {
+    this.standardizationFactor = standardizationFactor;
+    this.standardizationDelta = standardizationDelta;
     this.unitType = unitType;
   }
 
   public double toStandard(double measure) {
-    return this.standardizationFn.apply(measure);
+    return this.standardizationFactor * measure + this.standardizationDelta;
   }
 
   public boolean isSameUnit(Unit unit) {
