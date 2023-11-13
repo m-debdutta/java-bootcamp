@@ -9,8 +9,8 @@ public enum Unit {
   MILLIMETER((x -> x / 25), UnitType.LENGTH),
   GALLON((x -> x * 3.78), UnitType.VOLUME),
   LITER((x -> x), UnitType.VOLUME),
-  CELSIUS((x -> x), UnitType.TEMPERATURE),
-  FAHRENHEIT((x -> (x - 32) * 1 / 1.8), UnitType.TEMPERATURE);
+  CELSIUS((x -> (x * 1.8) + 32), UnitType.TEMPERATURE),
+  FAHRENHEIT((x -> x), UnitType.TEMPERATURE);
 
   private final UnitType unitType;
   private final Function<Double, Double> standardizationFn;

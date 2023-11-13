@@ -26,7 +26,12 @@ class UnitTest {
   }
 
   @Test
-  void shouldConvertCelsiusesFahrenheit() {
-    assertEquals(1, Unit.FAHRENHEIT.toStandard(33.8), 0.01);
+  void shouldConvertFahrenheitToStandard() {
+    assertEquals(33.8, Unit.FAHRENHEIT.toStandard(33.8), 0.01);
+  }
+
+  @Test
+  void shouldConvertCelsiusToStandard() {
+    assertEquals(32, Unit.CELSIUS.toStandard(0), 0.01);
   }
 }
