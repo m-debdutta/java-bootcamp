@@ -82,4 +82,18 @@ class MeasurementTest {
     Measurement oneMillimeter = Measurement.initialize(1, Unit.MILLIMETER);
     assertThrows(IncompatableUnitException.class, () -> oneMillimeter.addLength(oneGallon));
   }
+
+  @Test
+  void zeroDegreeCelsiusShouldBeThirtyTwoDegreeFahrenheit() throws InvalidLengthException {
+    Measurement zeroDegreeCelsius = Measurement.initialize(0, Unit.CELSIUS);
+    Measurement thirtyTwoDegreeFahrenheit = Measurement.initialize(32, Unit.FAHRENHEIT);
+    assertEquals(zeroDegreeCelsius, thirtyTwoDegreeFahrenheit);
+  }
+
+  @Test
+  void shouldBeEqualTemperature() throws InvalidLengthException {
+    Measurement oneDegreeCelsius = Measurement.initialize(1, Unit.CELSIUS);
+    Measurement tempInFahrenheit = Measurement.initialize(33.8, Unit.FAHRENHEIT);
+    assertEquals(oneDegreeCelsius, tempInFahrenheit);
+  }
 }

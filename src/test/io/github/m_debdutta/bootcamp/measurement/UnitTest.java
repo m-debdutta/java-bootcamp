@@ -21,7 +21,12 @@ class UnitTest {
   }
 
   @Test
-  void shouldConvertMilimeterToStandardUnit() {
+  void shouldConvertMillimeterToStandardUnit() {
     assertEquals(0.04, Unit.MILLIMETER.toStandard(1));
+  }
+
+  @Test
+  void shouldConvertCelsiusesFahrenheit() {
+    assertEquals(1, Unit.FAHRENHEIT.toStandard(33.8), 0.01);
   }
 }
