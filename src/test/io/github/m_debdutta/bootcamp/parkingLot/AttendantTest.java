@@ -3,6 +3,7 @@ package io.github.m_debdutta.bootcamp.parkingLot;
 import io.github.m_debdutta.bootcamp.parkingLot.exception.ParkingLotFullException;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AttendantTest {
@@ -32,9 +33,10 @@ class AttendantTest {
     Attendant attendant = new Attendant();
 
     attendant.assignParkingLot(new ParkingLot(1));
-    attendant.assignParkingLot(new ParkingLot(2));
+    attendant.assignParkingLot(new ParkingLot(1));
     attendant.park();
     attendant.park();
 
+    assertThrows(ParkingLotFullException.class, attendant::park);
   }
 }
